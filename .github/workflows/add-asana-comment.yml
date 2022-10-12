@@ -1,19 +1,30 @@
-on:
-  pull_request:
-    types: [opened, closed, reopened]
+# on:
+#   pull_request:
+#     branches:
+#       - develop
+#     types:
+#       - opened
+#       - edited
+#       - closed
+on: push
 
 jobs:
   create-comment-in-asana-task-job:
     runs-on: ubuntu-latest
     name: Create a comment in Asana Task
-    steps:
-      - name: Create a comment
-        uses: Asana/comment-on-task-github-action@latest
-        id: createComment
-        with:
-          asana-secret: ${{ secrets.ASANA_SECRET }}
-          comment-text: "{{PR_NAME}} is {{PR_STATE}}: {{PR_URL}}"
-          allowed-projects: |
-            1203113430774139
-      - name: Get status
-        run: echo "Status is ${{ steps.createComment.outputs.status }}"
+    steps:      
+      - name: check pull request format
+        run: |
+          do
+            curl -X POST \
+              'https://app.asana.com/api/1.0/tasks/1203113430774142/stories' \
+              --header 'Accept: application/json' \
+              --header 'Content-Type: application/json' \
+              --header 'Authorization: Bearer ${{ secrets.ASANA_SECRET }}' \
+              --data-raw '{
+              "data": {
+                "text": "sample_from_action"
+              }
+            }'
+          done
+
