@@ -15,16 +15,13 @@ jobs:
     steps:      
       - name: check pull request format
         run: |
-          do
-            curl -X POST \
-              'https://app.asana.com/api/1.0/tasks/1203113430774142/stories' \
-              --header 'Accept: application/json' \
-              --header 'Content-Type: application/json' \
-              --header 'Authorization: Bearer ${{ secrets.ASANA_SECRET }}' \
-              --data-raw '{
-              "data": {
-                "text": "sample_from_action"
-              }
-            }'
-          done
-
+          curl -X POST \
+            'https://app.asana.com/api/1.0/tasks/1203113430774142/stories' \
+            --header 'Accept: application/json' \
+            --header 'Content-Type: application/json' \
+            --header 'Authorization: Bearer ${{ secrets.ASANA_SECRET }}' \
+            --data-raw '{
+            "data": {
+              "text": "sample_from_action"
+            }
+          }'
