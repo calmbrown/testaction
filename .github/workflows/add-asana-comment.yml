@@ -1,12 +1,11 @@
-# on:
-#   pull_request:
-#     branches:
-#       - develop
-#     types:
-#       - opened
-#       - edited
-#       - closed
-on: push
+on:
+  pull_request:
+    branches:
+      - develop
+    types:
+      - opened
+      - edited
+      - closed
 
 jobs:
   create-comment-in-asana-task-job:
@@ -22,6 +21,6 @@ jobs:
             --header 'Authorization: Bearer ${{ secrets.ASANA_SECRET }}' \
             --data-raw '{
             "data": {
-              "text": "sample_from_action"
+              "text": "${{github.event.pull_request.html_url}}"
             }
           }'
