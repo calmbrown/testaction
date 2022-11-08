@@ -18,7 +18,7 @@ jobs:
     - name: Check Submodule Name
       uses: jtmullen/submodule-branch-check-action@v1
       with:
-        path: "testaction/testaction-submodule"
+        path: "calmbrown/testaction/testaction-submodule"
         branch: "main"
         first_parent: true
         fetch_depth: "50"
